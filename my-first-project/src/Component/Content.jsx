@@ -1,5 +1,6 @@
 import React from "react";
 import img2 from "../img/spring2.jpg";
+import "./Content.css";
 
 const Content = () => {
   const imgStyle = {
