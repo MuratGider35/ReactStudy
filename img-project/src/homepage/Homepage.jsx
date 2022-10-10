@@ -6,8 +6,8 @@ import Picture from "../component/Picture";
 const Homepage = () => {
   return (
     <div className="pictures">
-      {data.map((item) => (
-        <Picture data={item} />
+      {data.map((item, key) => (
+        <Picture key={key} data={item} />
       ))}
     </div>
   );
