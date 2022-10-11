@@ -10,7 +10,7 @@ function App() {
         <Card
           key={card.id}
           title={card.title}
-          image={card.image}
+          img={card.image}
           desc={card.desc}
         />
       ))}

@@ -1,10 +1,10 @@
-const data = [
+const data2 = [
   {
     id: 1,
     name: "Ayşe yılmaz",
     job: "Developer",
     comment: "Uygulamayı çok beğendim...",
-    img:"https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883334/person-1_rfzshl.jpg",
+    img: "https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883334/person-1_rfzshl.jpg",
   },
   {
     id: 2,
@@ -29,4 +29,4 @@ const data = [
   },
 ];
 
-export default data;
+export default data2;

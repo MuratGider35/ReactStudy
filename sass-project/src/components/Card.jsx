@@ -1,10 +1,10 @@
 import React from "react";
 import CardStyle from "../scss/card.module.scss";
 
-const Card = ({ data }) => {
+const Card = ({ datam }) => {
   return (
     <div className={CardStyle.container}>
-      {data.map((item) => {
+      {datam.map((item) => {
         const { id, name, job, comment, img } = item;
         return (
           <div key={id} className={CardStyle.card}>
