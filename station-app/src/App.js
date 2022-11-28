@@ -17,6 +17,18 @@ function App() {
     }));
   };
 
+  const handleStation = (value, name, key) => {
+    setRoute((route) => ({
+      ...route,
+      stations: route.stations.map((station, i) => {
+        if (key === i) {
+          station[name] = value;
+        }
+        return station;
+      }),
+    }));
+  };
+
   const enabled = route.route;
   return (
     <div>
@@ -32,17 +44,30 @@ function App() {
       </div>
       <br />
       <div>
-        {route.stations.map((station) => (
+        {route.stations.map((station, key) => (
           <div>
-            <input type="text" placeholder="durak" />
-            <input type="number" placeholder="LAT" />
-            <input type="number" placeholder="LON" />
+            <input
+              type="text"
+              placeholder="durak"
+              onChange={(e) => handleStation(e.target.value, "name", key)}
+            />
+            <input
+              type="number"
+              placeholder="LAT"
+              onChange={(e) => handleStation(e.target.value, "lat", key)}
+            />
+            <input
+              type="number"
+              placeholder="LON"
+              onChange={(e) => handleStation(e.target.value, "lon", key)}
+            />
           </div>
         ))}
       </div>
       <br />
       <button disabled={!enabled}>Tamam</button>
-
+      <h1>{route.route}</h1>
+      <h3>{route.stations[0].name}</h3>
       <pre>{JSON.stringify(route)}</pre>
     </div>
   );
