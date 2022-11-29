@@ -1,74 +1,77 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 function App() {
-  const [route, setRoute] = useState({
-    route: "",
-    stations: [],
-  });
-
-  const handleRoute = (e) => {
-    setRoute((route) => ({ ...route, route: e.target.value }));
+  const people = {
+    isim: "",
+    soyisim: "",
+    yaş: "",
   };
 
-  const addStation = () => {
-    setRoute((route) => ({
-      ...route,
-      stations: [...route.stations, { name: "", lat: "", lon: "" }],
-    }));
+  const [user, setUser] = useState(people);
+  const [table, setTable] = useState([]);
+  const handleChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
+    console.log(user);
   };
 
-  const handleStation = (value, name, key) => {
-    setRoute((route) => ({
-      ...route,
-      stations: route.stations.map((station, i) => {
-        if (key === i) {
-          station[name] = value;
-        }
-        return station;
-      }),
-    }));
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setTable([...table, user]);
+    setUser(people);
   };
 
-  const enabled = route.route;
   return (
-    <div>
-      <br />
-      <div>
-        <input
-          type="text"
-          value={route.route}
-          onChange={handleRoute}
-          placeholder="güzergah"
-        />
-        <button onClick={addStation}>Yeni Durak Ekle</button>
+    <div className="flex-form">
+      <div className="vertical">
+        <form onSubmit={handleSubmit} className="table-form">
+          <input
+            type="text"
+            placeholder="isim"
+            name="isim"
+            value={user.isim}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            placeholder="soyisim"
+            name="soyisim"
+            value={user.soyisim}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            placeholder="yaş"
+            name="yaş"
+            value={user.yaş}
+            onChange={handleChange}
+          />
+          <button type="submit">EKLE</button>
+        </form>
       </div>
-      <br />
+
       <div>
-        {route.stations.map((station, key) => (
-          <div>
-            <input
-              type="text"
-              placeholder="durak"
-              onChange={(e) => handleStation(e.target.value, "name", key)}
-            />
-            <input
-              type="number"
-              placeholder="LAT"
-              onChange={(e) => handleStation(e.target.value, "lat", key)}
-            />
-            <input
-              type="number"
-              placeholder="LON"
-              onChange={(e) => handleStation(e.target.value, "lon", key)}
-            />
-          </div>
-        ))}
+        <table border={1}>
+          <thead>
+            <tr>
+              <th>İSİM</th>
+              <th>SOY İSİM</th>
+              <th>YAŞ</th>
+            </tr>
+          </thead>
+          <tbody>
+            {table.map((item) => (
+              <tr>
+                <td>{item.isim}</td>
+                <td>{item.soyisim}</td>
+                <td>{item.yaş}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-      <br />
-      <button disabled={!enabled}>Tamam</button>
-      <h1>{route.route}</h1>
-      <h3>{route.stations[0].name}</h3>
-      <pre>{JSON.stringify(route)}</pre>
     </div>
   );
 }
