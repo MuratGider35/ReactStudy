@@ -24,3 +24,9 @@ code {
   justify-content: center;
   gap: 10px;
 }
+.editinput {
+  background-color: rgb(132, 177, 177);
+}
+button{
+  width: 5rem;
+}
